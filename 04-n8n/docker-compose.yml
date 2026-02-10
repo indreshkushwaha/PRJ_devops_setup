@@ -5,6 +5,7 @@ services:
     environment:
       - TZ=UTC
       - N8N_HOST=n8n.devroad.online
+      - N8N_PROTOCOL=https
     volumes:
       - n8n-data:/home/node/.n8n
     networks:
