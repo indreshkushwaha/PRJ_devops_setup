@@ -9,8 +9,8 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./conf.d:/etc/nginx/conf.d:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
-      # When running from repo root: -f 01-nginx/docker-compose.yml → use 01-nginx/acme
-      - ./01-nginx/acme:/var/www/acme
+      # Resolved from compose file dir (01-nginx/), so ./acme = 01-nginx/acme when using -f from repo root
+      - ./acme:/var/www/acme
     networks:
       - primary
     restart: unless-stopped

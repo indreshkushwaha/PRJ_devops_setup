@@ -30,10 +30,20 @@ From the project root (e.g. `~/PRJ_devops_setup`):
 mkdir -p 01-nginx/acme
 ```
 
-### 3. Start nginx
+### 3. Start nginx (from repo root)
 
 ```bash
-docker compose -f 01-nginx/docker-compose.yml up -d
+cd ~/PRJ_devops_setup
+docker compose -f 01-nginx/docker-compose.yml up -d --force-recreate
+```
+
+### 3b. Verify ACME volume (if certbot later returns 404)
+
+```bash
+echo ok > 01-nginx/acme/.well-known/acme-challenge/test
+docker exec nginx-router cat /var/www/acme/.well-known/acme-challenge/test
+# Should print "ok". If "No such file", the acme volume is wrong — ensure you run compose from repo root.
+rm 01-nginx/acme/.well-known/acme-challenge/test
 ```
 
 ### 4. Get a real certificate with Let's Encrypt (certbot on host)
