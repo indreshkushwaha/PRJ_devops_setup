@@ -1,0 +1,30 @@
+services:
+  ollama:
+    image: alpine/ollama:latest
+    container_name: ollama
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - primary
+    restart: unless-stopped
+
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: openwebui
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    volumes:
+      - openwebui-data:/app/backend/data
+    networks:
+      - primary
+    restart: unless-stopped
+
+networks:
+  primary:
+    external: true
+
+volumes:
+  ollama-data:
+  openwebui-data:

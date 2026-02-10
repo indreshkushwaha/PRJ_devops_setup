@@ -1,0 +1,10 @@
+# Example: serve static files only (rename to .conf to use)
+# server {
+#     listen 80;
+#     server_name static.your-domain.com;
+#     root /var/www/html;
+#     index index.html;
+#     location / {
+#         try_files $uri $uri/ /index.html;
+#     }
+# }
