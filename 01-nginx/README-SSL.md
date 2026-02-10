@@ -87,3 +87,6 @@ Or add to crontab (run daily):
 - **Nginx won't start:** Ensure `/etc/letsencrypt/live/ai.devroad.online/fullchain.pem` and `privkey.pem` exist (step 1).
 - **502 on HTTPS:** Check that Open WebUI and n8n containers are on the `primary` network and running.
 - **Certificate errors in browser:** After running certbot, reload nginx (step 5).
+- **Git: "unmerged files" or "Pulling is not possible" on server:** Reset to match origin so you can pull cleanly:  
+  `cd ~/PRJ_devops_setup && git fetch origin && git reset --hard origin/main`  
+  (This discards local changes on the server; then run `git pull` if needed.)
