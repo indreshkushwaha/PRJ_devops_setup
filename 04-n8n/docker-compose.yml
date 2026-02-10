@@ -4,7 +4,7 @@ services:
     container_name: n8n
     environment:
       - TZ=UTC
-      - N8N_HOST=n8n.example.com
+      - N8N_HOST=n8n.devroad.online
     volumes:
       - n8n-data:/home/node/.n8n
     networks:
